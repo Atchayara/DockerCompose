@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t my-nginx .'
-        sh 'docker tag my-flask $DOCKER_NGINX_IMAGE'
+        sh 'docker tag my-nginx $DOCKER_NGINX_IMAGE'
       }
     }
     stage('Test') {
@@ -17,7 +17,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
-          sh 'docker push $DOCKER_BFLASK_IMAGE'
+          sh 'docker push $DOCKER_NGINX_IMAGE'
         }
       }
     }
