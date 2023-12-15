@@ -4,13 +4,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t my-flask .'
-        sh 'docker tag my-flask $DOCKER_BFLASK_IMAGE'
+        sh 'docker build -t my-nginx .'
+        sh 'docker tag my-flask $DOCKER_NGINX_IMAGE'
       }
     }
     stage('Test') {
       steps {
-        sh 'docker run my-flask python -m pytest app/tests/'
+        sh 'docker run my-nginx nginx -m pytest app/tests/'
       }
     }
     stage('Deploy') {
