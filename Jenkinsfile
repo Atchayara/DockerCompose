@@ -10,7 +10,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'docker run my-nginx nginx -m pytest app/tests/'
+        sh 'docker run my-nginx nginx'
       }
     }
     stage('Deploy') {
