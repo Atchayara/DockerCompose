@@ -10,7 +10,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'docker run my-nginx nginx'
+        sh 'docker run -d my-nginx nginx'
       }
     }
     stage('Deploy') {
